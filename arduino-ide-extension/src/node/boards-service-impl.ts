@@ -263,7 +263,6 @@ export class BoardsServiceImpl extends CoreClientAware implements BoardsService 
 
         return [...packages.values()];
     }
-
     async install(options: { item: BoardsPackage, progressId?: string, version?: Installable.Version }): Promise<void> {
         const item = options.item;
         const version = !!options.version ? options.version : item.availableVersions[0];
@@ -283,7 +282,10 @@ export class BoardsServiceImpl extends CoreClientAware implements BoardsService 
         const resp = client.platformInstall(req);
         resp.on('data', InstallWithProgress.createDataCallback({ progressId: options.progressId, responseService: this.responseService }));
         await new Promise<void>((resolve, reject) => {
-            resp.on('end', resolve);
+            resp.on('end', () => {
+                this.boardDiscovery.startBoardListWatch(coreClient)
+                resolve();
+            });
             resp.on('error', error => {
                 this.responseService.appendToOutput({ chunk: `Failed to install platform: ${item.id}.\n` });
                 this.responseService.appendToOutput({ chunk: error.toString() });
@@ -314,7 +316,10 @@ export class BoardsServiceImpl extends CoreClientAware implements BoardsService 
         const resp = client.platformUninstall(req);
         resp.on('data', InstallWithProgress.createDataCallback({ progressId, responseService: this.responseService }));
         await new Promise<void>((resolve, reject) => {
-            resp.on('end', resolve);
+            resp.on('end', () => {
+                this.boardDiscovery.startBoardListWatch(coreClient)
+                resolve();
+            });
             resp.on('error', reject);
         });
 

@@ -7,6 +7,7 @@ import {
     LibrarySearchResponse
 } from './cli-protocol/cc/arduino/cli/commands/v1/lib_pb';
 import { Installable } from '../common/protocol/installable';
+import { BoardDiscovery } from './board-discovery';
 import { ILogger, notEmpty } from '@theia/core';
 import { FileUri } from '@theia/core/lib/node';
 import { ResponseService, NotificationServiceServer } from '../common/protocol';
@@ -20,6 +21,9 @@ export class LibraryServiceImpl extends CoreClientAware implements LibraryServic
 
     @inject(ResponseService)
     protected readonly responseService: ResponseService;
+
+    @inject(BoardDiscovery)
+    protected readonly boardDiscovery: BoardDiscovery;
 
     @inject(NotificationServiceServer)
     protected readonly notificationServer: NotificationServiceServer;
@@ -187,7 +191,10 @@ export class LibraryServiceImpl extends CoreClientAware implements LibraryServic
         const resp = client.libraryInstall(req);
         resp.on('data', InstallWithProgress.createDataCallback({ progressId: options.progressId, responseService: this.responseService }));
         await new Promise<void>((resolve, reject) => {
-            resp.on('end', resolve);
+            resp.on('end', () => {
+                this.boardDiscovery.startBoardListWatch(coreClient)
+                resolve();
+            });
             resp.on('error', error => {
                 this.responseService.appendToOutput({ chunk: `Failed to install library: ${item.name}${version ? `:${version}` : ''}.\n` });
                 this.responseService.appendToOutput({ chunk: error.toString() });
@@ -214,7 +221,10 @@ export class LibraryServiceImpl extends CoreClientAware implements LibraryServic
         const resp = client.zipLibraryInstall(req);
         resp.on('data', InstallWithProgress.createDataCallback({ progressId, responseService: this.responseService }));
         await new Promise<void>((resolve, reject) => {
-            resp.on('end', resolve);
+            resp.on('end', () => {
+                this.boardDiscovery.startBoardListWatch(coreClient)
+                resolve();
+            });
             resp.on('error', reject);
         });
     }
@@ -234,7 +244,10 @@ export class LibraryServiceImpl extends CoreClientAware implements LibraryServic
         const resp = client.libraryUninstall(req);
         resp.on('data', InstallWithProgress.createDataCallback({ progressId, responseService: this.responseService }));
         await new Promise<void>((resolve, reject) => {
-            resp.on('end', resolve);
+            resp.on('end', () => {
+                this.boardDiscovery.startBoardListWatch(coreClient)
+                resolve();
+            });
             resp.on('error', reject);
         });
 

@@ -2,7 +2,7 @@ import { injectable, inject, postConstruct, named } from 'inversify';
 import { ClientDuplexStream } from '@grpc/grpc-js';
 import { ILogger } from '@theia/core/lib/common/logger';
 import { deepClone } from '@theia/core/lib/common/objects';
-import { CoreClientAware } from './core-client-provider';
+import { CoreClientAware, CoreClientProvider } from './core-client-provider';
 import { BoardListWatchRequest, BoardListWatchResponse } from './cli-protocol/cc/arduino/cli/commands/v1/board_pb';
 import { Board, Port, NotificationServiceServer, AvailablePorts, AttachedBoardsChangeEvent } from '../common/protocol';
 
@@ -43,10 +43,17 @@ export class BoardDiscovery extends CoreClientAware {
     protected async init(): Promise<void> {
         await this.coreClientProvider.initialized;
         const coreClient = await this.coreClient();
+        this.startBoardListWatch(coreClient);
+    }
+
+    startBoardListWatch(coreClient: CoreClientProvider.Client): void {
         const { client, instance } = coreClient;
         const req = new BoardListWatchRequest();
         req.setInstance(instance);
         this.boardWatchDuplex = client.boardListWatch();
+        this.boardWatchDuplex.on('end', () => {
+            console.warn('board watch ended')
+        })
         this.boardWatchDuplex.on('data', (resp: BoardListWatchResponse) => {
             const detectedPort = resp.getPort();
             if (detectedPort) {
@@ -67,7 +74,7 @@ export class BoardDiscovery extends CoreClientAware {
                 const oldState = deepClone(this._state);
                 const newState = deepClone(this._state);
 
-                const address = (detectedPort as any).getPort().getAddress(); 
+                const address = (detectedPort as any).getPort().getAddress();
                 const protocol = Port.Protocol.toProtocol((detectedPort as any).getPort().getProtocol());
                 // const label = detectedPort.getProtocolLabel();
                 const port = { address, protocol };
