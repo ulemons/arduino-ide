@@ -80,7 +80,7 @@ export class SketchbookWidgetContribution
   }
 
   onStart(): void {
-    this.shell.currentChanged.connect(() =>
+    this.shell.onDidChangeCurrentWidget(() =>
       this.onCurrentWidgetChangedHandler()
     );
 
