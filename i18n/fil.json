@@ -31,7 +31,7 @@
             "upload.verbose": "True para sa verbose upload output. Ito ay naka-false by default.",
             "window.autoScale": "True kung nais mong awtomatikong mag-adjust ang scaling ng user interface depende sa laki ng font o letra sa screen.",
             "window.zoomLevel": "Baguhin ang lebel ng pagka-zoom ng window. Ang orihinal na laki ay 0 at bawat dagdag (halimbawa +1) o bawas (halimbawa -1) ay katumbas ng 20% na pagtaas o pagbaba sa zoom. Pwede kang mag-enter ng decimals para mas makontrol mo ang pag-adjust ng lebel ng zoom. ",
-            "ide.autoUpdate": "True kung gusto mong awtomatikong maghanap ng updates. Ang IDE ay awtomatikong maghahanap ng updates pana-panahon. ",
+            "ide.updateChannel": "Release channel to get updated from. 'stable' is the stable release, 'nightly' is the latest development build.",
             "board.certificates": "Listahan ng mga sertipikong maaaring ma-upload sa ma board.",
             "sketchbook.showAllFiles": "True para ipakita lahat ng sketch files sa loob ng isang sketch. Ito ay false by default.",
             "cloud.enabled": "True kapag ang sketch sync function ay gumagana. Ito ay true by default.",
@@ -55,7 +55,6 @@
             "compile": "compile",
             "upload": "upload",
             "verifyAfterUpload": "Verify code after upload",
-            "checkForUpdates": "Check for updates on startup",
             "editorQuickSuggestions": "Editor Quick Suggestions",
             "additionalManagerURLs": "Additional Boards Manager URLs",
             "noProxy": "No proxy",
@@ -108,7 +107,7 @@
             "installNow": "The \"{0} {1}\" core has to be installed for the currently selected \"{2}\" board. Do you want to install it now?",
             "configDialogTitle": "Select Other Board & Port",
             "configDialog1": "Select both a Board and a Port if you want to upload a sketch.",
-            "configDialog2": "If you only select a Board you will be able just to compile, but not to upload your sketch.",
+            "configDialog2": "If you only select a Board you will be able to compile, but not to upload your sketch.",
             "pleasePickBoard": "Please pick a board connected to the port you have selected.",
             "showAllAvailablePorts": "Shows all available ports when enabled",
             "programmer": "Programmer",
@@ -173,7 +172,7 @@
             "showFolder": "Show Sketch Folder",
             "sketch": "Sketch",
             "moving": "Moving",
-            "movingMsg": "The file \"{0}\" needs to be inside a sketch folder named as \"{1}\".\nCreate this folder, move the file, and continue?",
+            "movingMsg": "The file \"{0}\" needs to be inside a sketch folder named \"{1}\".\nCreate this folder, move the file, and continue?",
             "cantOpen": "A folder named \"{0}\" already exists. Can't open sketch.",
             "saveFolderAs": "Save sketch folder as...",
             "sketchbook": "Sketchbook",
@@ -243,18 +242,32 @@
             "noSupportedBoardConnected": "No supported board connected"
         },
         "firmware": {
-            "updater": "WiFi101 /  WiFiNINA Firmware Updater",
+            "updater": "WiFi101 / WiFiNINA Firmware Updater",
             "selectBoard": "Select Board",
             "checkUpdates": "Check Updates",
             "selectVersion": "Select firmware version",
             "install": "Install",
             "overwriteSketch": "Installation will overwrite the Sketch on the board.",
             "installingFirmware": "Installing firmware.",
-            "successfullyInstalled": "Firmware succesfully installed.",
+            "successfullyInstalled": "Firmware successfully installed.",
             "failedInstall": "Installation failed. Please try again."
         },
         "dialog": {
             "dontAskAgain": "Don't ask again"
+        },
+        "ide-updater": {
+            "notNowButton": "Not now",
+            "versionDownloaded": "Arduino IDE {0} has been downloaded.",
+            "closeToInstallNotice": "Close the software and install the update on your machine.",
+            "closeAndInstallButton": "Close and Install",
+            "downloadingNotice": "Downloading the latest version of the Arduino IDE.",
+            "updateAvailable": "Update Available",
+            "newVersionAvailable": "A new version of Arduino IDE ({0}) is available for download.",
+            "skipVersionButton": "Skip Version",
+            "downloadButton": "Download"
+        },
+        "updater": {
+            "ideUpdaterDialog": "Software Update"
         },
         "userFields": {
             "cancel": "Cancel",
@@ -269,7 +282,7 @@
             "carriageReturn": "Carriage Return",
             "newLineCarriageReturn": "Both NL & CR",
             "notConnected": "Not connected. Select a board and a port to connect automatically.",
-            "message": "Message ({0} + Enter to send message to '{1}' on '{2}'",
+            "message": "Message ({0} + Enter to send message to '{1}' on '{2}')",
             "connectionBusy": "Connection failed. Serial port is busy: {0}",
             "disconnected": "Disconnected {0} from {1}.",
             "unexpectedError": "Unexpected error. Reconnecting {0} on port {1}.",

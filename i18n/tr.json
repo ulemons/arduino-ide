@@ -31,7 +31,7 @@
             "upload.verbose": " Ayrıntılı yükleme çıktısı için True. Varsayılan: False",
             "window.autoScale": "Kullanıcı arayüzü yazı tipi boyutu ile otomatik olarak ölçeklenecekse True",
             "window.zoomLevel": "Pencerenin yakınlaştırma seviyesini ayarlar. Orijinal boyut 0'dır ve her yukarı artış (örn. 1) veya düşüş (örn. -1) %20 daha büyük veya daha küçük anlamına gelir. Aynı zamanda yakınlaştırma seviyesini daha hassas ayarlamak için ondalıklar da girebilirsiniz.",
-            "ide.autoUpdate": "Otomatik güncelleme kontrollerini açmak için True. IDE güncellemeleri otomatik ve periyodik olarak kontrol eder.",
+            "ide.updateChannel": "Release channel to get updated from. 'stable' is the stable release, 'nightly' is the latest development build.",
             "board.certificates": "Kartlara yüklenebilecek sertifikaların listesi",
             "sketchbook.showAllFiles": "Tüm eskiz dosyalarını eskiz içinde görüntülemek için True. Varsayılan: false.",
             "cloud.enabled": "Eskiz eşitleme fonksiyonları etkinse True. Varsayılan: True.",
@@ -55,7 +55,6 @@
             "compile": "derle",
             "upload": "yükle",
             "verifyAfterUpload": "Yüklemeden sonra kodu doğrula",
-            "checkForUpdates": "Açılışta güncellemeleri kontrol et",
             "editorQuickSuggestions": "Editör Hızlı Önerileri",
             "additionalManagerURLs": "Ek Kart Yöneticisi URL'leri",
             "noProxy": "Vekil yok",
@@ -108,7 +107,7 @@
             "installNow": "Mevcut seçili \"{2}\" kartı için \"{0} {1}\" çekirdeğinin kurulması gerekiyor. Bunu şimdi kurmak istiyor musunuz?",
             "configDialogTitle": "Diğer Kart ve Port Seç",
             "configDialog1": "Bir eskiz yüklemek istiyorsanız Kart ve Port seçmelisiniz.",
-            "configDialog2": "Sadece Kart seçerseniz eskizinizi derleyebilir, ancak yükleyemezsiniz.",
+            "configDialog2": "If you only select a Board you will be able to compile, but not to upload your sketch.",
             "pleasePickBoard": "Lütfen seçtiğiniz porta bağlı kartı seçin.",
             "showAllAvailablePorts": "Etkinleştirildiğinde tüm mevcut portları görüntüler",
             "programmer": "Programlayıcı",
@@ -173,7 +172,7 @@
             "showFolder": "Eskiz Klasörünü Göster",
             "sketch": "Eskiz",
             "moving": "Taşınıyor",
-            "movingMsg": "\"{0}\" dosyasının \"{1}\" isminde bir eskiz klasörünün içinde olması gerekiyor.\nKlasörü oluştur, dosyayı taşı ve devam et?",
+            "movingMsg": "The file \"{0}\" needs to be inside a sketch folder named \"{1}\".\nCreate this folder, move the file, and continue?",
             "cantOpen": "\"{0}\" klasörü zaten mevcut. Eskiz açılamadı.",
             "saveFolderAs": "Eskiz klasörünü farklı kaydet...",
             "sketchbook": "Eskiz Defteri",
@@ -243,7 +242,7 @@
             "noSupportedBoardConnected": "Bağlı desteklenen kart yok"
         },
         "firmware": {
-            "updater": "WiFi101 /  WiFiNINA Firmware Güncelleyici",
+            "updater": "WiFi101 / WiFiNINA Firmware Updater",
             "selectBoard": "Kart Seç",
             "checkUpdates": "Güncellemeleri Kontrol Et",
             "selectVersion": "Firmware versiyonunu seç",
@@ -255,6 +254,20 @@
         },
         "dialog": {
             "dontAskAgain": "Tekrar sorma"
+        },
+        "ide-updater": {
+            "notNowButton": "Şimdi değil",
+            "versionDownloaded": "Arduino IDE {0} has been downloaded.",
+            "closeToInstallNotice": "Close the software and install the update on your machine.",
+            "closeAndInstallButton": "Kapat ve Kur",
+            "downloadingNotice": "Downloading the latest version of the Arduino IDE.",
+            "updateAvailable": "Update Available",
+            "newVersionAvailable": "A new version of Arduino IDE ({0}) is available for download.",
+            "skipVersionButton": "Skip Version",
+            "downloadButton": "Download"
+        },
+        "updater": {
+            "ideUpdaterDialog": "Software Update"
         },
         "userFields": {
             "cancel": "İptal",
@@ -269,7 +282,7 @@
             "carriageReturn": "Satır Başı",
             "newLineCarriageReturn": "NL ve CR ile Birlikte",
             "notConnected": "Bağlı değil. Otomatik olarak bağlanacak bir kart ve bir port seçin.",
-            "message": "Mesaj ({0} + Mesaj göndermek için Enter '{1}' / '{2}'",
+            "message": "Message ({0} + Enter to send message to '{1}' on '{2}')",
             "connectionBusy": "Bağlantı başarısız. Seri Port meşgul: {0}",
             "disconnected": "{1} bağlantısı koptu {0}.",
             "unexpectedError": "Beklenmeyen hata. Yeniden bağlanılıyor {0} / {1}.",
